@@ -1,0 +1,14 @@
+C:\Users\Alexey\Documents\Visual Studio 2013\Projects\homeStats\homeStats\bin\Release\homeStats.exe.config
+C:\Users\Alexey\Documents\Visual Studio 2013\Projects\homeStats\homeStats\bin\Release\homeStats.exe
+C:\Users\Alexey\Documents\Visual Studio 2013\Projects\homeStats\homeStats\bin\Release\homeStats.pdb
+C:\Users\Alexey\Documents\Visual Studio 2013\Projects\homeStats\homeStats\bin\Release\stats.dll
+C:\Users\Alexey\Documents\Visual Studio 2013\Projects\homeStats\homeStats\bin\Release\stats.pdb
+C:\Users\Alexey\Documents\Visual Studio 2013\Projects\homeStats\homeStats\obj\Release\homeStats.csprojResolveAssemblyReference.cache
+C:\Users\Alexey\Documents\Visual Studio 2013\Projects\homeStats\homeStats\obj\Release\homeStats.DateForm.resources
+C:\Users\Alexey\Documents\Visual Studio 2013\Projects\homeStats\homeStats\obj\Release\homeStats.FinancesForm.resources
+C:\Users\Alexey\Documents\Visual Studio 2013\Projects\homeStats\homeStats\obj\Release\homeStats.Form1.resources
+C:\Users\Alexey\Documents\Visual Studio 2013\Projects\homeStats\homeStats\obj\Release\homeStats.MainForm.resources
+C:\Users\Alexey\Documents\Visual Studio 2013\Projects\homeStats\homeStats\obj\Release\homeStats.Properties.Resources.resources
+C:\Users\Alexey\Documents\Visual Studio 2013\Projects\homeStats\homeStats\obj\Release\homeStats.csproj.GenerateResource.Cache
+C:\Users\Alexey\Documents\Visual Studio 2013\Projects\homeStats\homeStats\obj\Release\homeStats.exe
+C:\Users\Alexey\Documents\Visual Studio 2013\Projects\homeStats\homeStats\obj\Release\homeStats.pdb
