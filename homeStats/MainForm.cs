@@ -27,12 +27,15 @@ namespace homeStats
         public MainForm()
         {
             InitializeComponent();
-            this.StartPosition =System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.KeyDown += main_KeyDown;
+            this.KeyPreview = true;
+            this.StartPosition =System.Windows.Forms.FormStartPosition.CenterScreen;            
             string cnStr = ConfigurationManager.ConnectionStrings["Statistic"].ConnectionString;
 dal = new Statistic(cnStr);
 example = new Dynamic();
 conteiner = new dynamicConteiner();
 result = new StringBuilder();
+            nameOfUser.KeyDown += type_KeyDown;
 this.nameOfProduct.SelectedValueChanged += ComboBox_SelectedValueChanged;
 dal.selectProduct(nameOfProduct);
 example.givedate = date;
@@ -58,28 +61,7 @@ nameOfUser.Items.CopyTo(obj1, 0);
         private void MainForm_Load(object sender, EventArgs e)
         {
 
-        }      
-
-        private void поПользователюToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form1 form = new Form1();
-            form.Show();
         }
-
-        private void byDate_Click(object sender, EventArgs e)
-        {
-            DateForm form = new DateForm();
-            form.Show();
-        }
-
-        
-
-        private void поПродуктуToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Product form = new Product();
-            form.Show();
-        }
-
         private void buttonZero_Click(object sender, EventArgs e)
         {
             result.Append("0");
@@ -258,10 +240,9 @@ nameOfUser.Items.CopyTo(obj1, 0);
             Check form = new Check();
             form.second = this;
             form.Show();
-            form.insert();
-            
+            form.insert();            
 
-            
+
         }
         public void insert() {
             conteiner.insert(this);
@@ -296,25 +277,76 @@ nameOfUser.Items.CopyTo(obj1, 0);
             nameOfProduct.Items.CopyTo(obj, 0);
             conteiner.insertAllTypes();
         }
-
-        private void nameOfUser_MouseClick(object sender, MouseEventArgs e)
+        private void type_KeyDown(object sender, KeyEventArgs e)
         {
-            
-        }
-
-        private void nameOfProduct_MouseClick(object sender, MouseEventArgs e)
-        {
-            
-        }
-
-        private void trial_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyData == Keys.Right)
+            if (e.KeyData == Keys.Home)
             {
-                button2.Select();
+                ComboBox cb = (ComboBox)sender;
+                dal.selectName(cb);
             }
         }
-
+        private void main_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                if (conteiner.getCart()[conteiner.getCart().Count - 1].giveproductType.SelectedItem == null || conteiner.getCart()[conteiner.getCart().Count - 1].giveproduct.SelectedItem == null || conteiner.getCart()[conteiner.getCart().Count - 1].givePrice.Text == "" || conteiner.getCart()[conteiner.getCart().Count - 1].giveQantity.Text == "")
+                {
+                    MessageBox.Show("Заполните все поля");
+                    return;
+                }
+                    //получаем ссылку на кнопку, на которую мы нажали
+                    DateTimePicker d = conteiner.getCart()[conteiner.getCart().Count - 1].givedate;
+                    ComboBox user = conteiner.getCart()[conteiner.getCart().Count - 1].giveproductType;
+                    ComboBox product = conteiner.getCart()[conteiner.getCart().Count - 1].giveproduct;
+                    TextBox p = conteiner.getCart()[conteiner.getCart().Count - 1].givePrice;
+                    TextBox q = conteiner.getCart()[conteiner.getCart().Count - 1].giveQantity;
+                    //Создаем новую кнопку
+                    DateTimePicker tempDate = new DateTimePicker();
+                    tempDate.Value = d.Value;
+                    tempDate.Width = d.Width;
+                    tempDate.Height = d.Height;
+                    ComboBox tempuser = new ComboBox();
+                    tempuser.Height = user.Height;
+                    tempuser.Width = user.Width;
+                    tempuser.Items.AddRange(obj1);
+                    ComboBox tempprod = new ComboBox();
+                    tempprod.Width = product.Width;
+                    tempprod.Height = product.Height;
+                    tempprod.Items.AddRange(obj);
+                    TextBox tempp = new TextBox();
+                    tempp.Width = p.Width;
+                    tempp.Height = p.Height;
+                    TextBox tempq = new TextBox();
+                    tempq.Width = q.Width;
+                    tempq.Height = q.Height;
+                    //Размещаем ее правее (на 10px) кнопки, на которую мы нажали
+                    tempDate.Location = new Point(d.Location.X, d.Location.Y + d.Height + 3);
+                    tempuser.Location = new Point(user.Location.X, tempDate.Location.Y);
+                    tempprod.Location = new Point(product.Location.X, tempDate.Location.Y);
+                    tempp.Location = new Point(p.Location.X, tempDate.Location.Y);
+                    tempq.Location = new Point(q.Location.X, tempDate.Location.Y);
+                    //Добавляем событие нажатия на новую кнопку 
+                    //(то же что и при нажатии на исходную)                    
+                    tempuser.Click += new EventHandler(nameOfUser_Click);
+                tempuser.KeyDown += type_KeyDown;
+                    tempprod.SelectedValueChanged += ComboBox_SelectedValueChanged;
+                tempprod.Click += nameOfProduct_Click;
+                    //Добавляем элемент на форму
+                    this.Controls.Add(tempDate);
+                    this.Controls.Add(tempuser);
+                    this.Controls.Add(tempprod);
+                    this.Controls.Add(tempp);
+                    this.Controls.Add(tempq);
+                    prod = new Dynamic();
+                    prod.givedate = tempDate;
+                    prod.givePrice = tempp;
+                    prod.giveproduct = tempprod;
+                    prod.giveproductType = tempuser;
+                    prod.giveQantity = tempq;
+                    conteiner.add(prod);
+                
+            }
+        }
         private void button2_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Right)
@@ -369,15 +401,7 @@ nameOfUser.Items.CopyTo(obj1, 0);
             {
                 addButton.Select();
             }
-            if (e.KeyData == Keys.Enter)
-            {
-                dal.insert(nameOfUser.SelectedItem.ToString(), date.Value, nameOfProduct.SelectedItem.ToString(), Convert.ToDouble(price.Text), Convert.ToDouble(qantity.Text));
-                trial.Text = null;
-                nameOfProduct.SelectedItem = null;
-                nameOfUser.SelectedItem = null;
-                qantity.Text = null;
-                price.Text = null;
-            }
+            
         }
 
         private void button1_KeyDown(object sender, KeyEventArgs e)
@@ -408,90 +432,7 @@ nameOfUser.Items.CopyTo(obj1, 0);
                 nameOfUser.Select();
                 nameOfUser.DroppedDown = true;
             }
-        }
-
-        
-
-        private void графикиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Graphic f = new Graphic();
-            f.Show();
-        }
-
-       
-        
-
-       
-
-        private void финансыToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FinancesForm finances = new FinancesForm();
-            finances.Show();
-        }
-
-        private void button1_Click_3(object sender, EventArgs e)
-        {
-            TestForm testf = new TestForm();
-            testf.Show();
-        }
-
-        private void nameOfProduct_Click(object sender, EventArgs e)
-        {
-            ComboBox box = (ComboBox)sender;
-            box.DroppedDown = true;
-            if (box == prod.giveproduct)
-            {
-                //получаем ссылку на кнопку, на которую мы нажали
-                DateTimePicker d = prod.givedate;
-                ComboBox user = prod.giveproductType;
-                ComboBox product = prod.giveproduct;
-                TextBox p = prod.givePrice;
-                TextBox q = prod.giveQantity;
-                //Создаем новую кнопку
-                DateTimePicker tempDate = new DateTimePicker();
-                tempDate.Value = d.Value;
-                tempDate.Width = d.Width;
-                tempDate.Height = d.Height;
-                ComboBox tempuser = new ComboBox();
-                tempuser.Height = user.Height;
-                tempuser.Width = user.Width;
-                tempuser.Items.AddRange(obj1);
-                ComboBox tempprod = new ComboBox();
-                tempprod.Width = product.Width;
-                tempprod.Height = product.Height;
-                tempprod.Items.AddRange(obj);
-                TextBox tempp = new TextBox();
-                tempp.Width = p.Width;
-                tempp.Height = p.Height;
-                TextBox tempq = new TextBox();
-                tempq.Width = q.Width;
-                tempq.Height = q.Height;
-                //Размещаем ее правее (на 10px) кнопки, на которую мы нажали
-                tempDate.Location = new Point(d.Location.X, d.Location.Y + d.Height + 3);
-                tempuser.Location = new Point(user.Location.X, tempDate.Location.Y );
-                tempprod.Location = new Point(product.Location.X, tempDate.Location.Y );
-                tempp.Location = new Point(p.Location.X, tempDate.Location.Y );
-                tempq.Location = new Point(q.Location.X, tempDate.Location.Y);
-                //Добавляем событие нажатия на новую кнопку 
-                //(то же что и при нажатии на исходную)
-                tempprod.Click += new EventHandler(nameOfProduct_Click);
-                tempuser.Click += new EventHandler(nameOfUser_Click);
-                tempprod.SelectedValueChanged += ComboBox_SelectedValueChanged;
-                //Добавляем элемент на форму
-                this.Controls.Add(tempDate);
-                this.Controls.Add(tempuser);
-                this.Controls.Add(tempprod);
-                this.Controls.Add(tempp);
-                this.Controls.Add(tempq);
-                prod = new Dynamic();
-                prod.givedate = tempDate;
-                prod.givePrice = tempp;
-                prod.giveproduct = tempprod;
-                prod.giveproductType = tempuser;
-                prod.giveQantity = tempq;
-                conteiner.add(prod);
-            }
-        }
+        }       
 
         private void nameOfUser_Click(object sender, EventArgs e)
         {
@@ -554,12 +495,44 @@ nameOfUser.Items.CopyTo(obj1, 0);
                  }
         }
 
+        private void поПользователюToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Form1 form = new Form1();
+            form.Show();
+        }
 
+        private void поДатеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DateForm form = new DateForm();
+            form.Show();
+        }
 
+        private void ByprodToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Product form = new Product();
+            form.Show();
+        }
 
+        private void financesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FinancesForm form = new FinancesForm();
+            form.Show();
+        }
 
-}
+        private void GrapgToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Graphic form = new Graphic();
+            form.Show();
+        }
 
+        private void nameOfProduct_Click(object sender, EventArgs e)
+        {
+            ComboBox c = (ComboBox)sender;
+            c.DroppedDown = true;
+        }
+        
+    }
+    
         }
     
 

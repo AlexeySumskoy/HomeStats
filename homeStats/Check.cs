@@ -16,7 +16,7 @@ namespace homeStats
         string name;
         DateTime date;
         string product;
-        public TestForm first;
+        public DateForm first;
         public MainForm second;
         public Check()
         {
@@ -42,6 +42,43 @@ namespace homeStats
             this.Controls.Add(yes);
             this.Controls.Add(no);
         }
+        public void save()
+        {
+            Label label = new Label();
+            label.Location = new Point(125, 13);
+            label.Width = 500;
+            label.Height = 13;
+            string s = "сохранить бд в google drive ?";
+            label.Text = s;
+            Button yes = new Button();
+            yes.Location = new Point(123, 51);
+            yes.Text = "Да";
+            Button no = new Button();
+            no.Location = new Point(225, 51);
+            no.Text = "Нет";
+            no.Click += new EventHandler(no_Click);
+            yes.Click += new EventHandler(yes_Click);
+            this.Controls.Add(label);
+            this.Controls.Add(yes);
+            this.Controls.Add(no);
+        }
+        private void yes_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                Drive drive = new Drive();
+                drive.UploadDb();
+                MessageBox.Show("Сохранено");
+                this.Close();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+
+        }
+        private void no_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
         private void yesButton_Click(object sender, EventArgs e)
         {
             
@@ -54,6 +91,9 @@ namespace homeStats
 
             second.insert();
             this.Close();
+            Check check = new Check();
+            check.Show();
+            check.save();
 
         }
         public void open(int ind, string name, DateTime date, string product) {

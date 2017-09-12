@@ -48,6 +48,7 @@
             this.nameOfUser.Name = "nameOfUser";
             this.nameOfUser.Size = new System.Drawing.Size(440, 21);
             this.nameOfUser.TabIndex = 0;
+            this.nameOfUser.Click += new System.EventHandler(this.nameOfUser_Click);
             // 
             // name
             // 

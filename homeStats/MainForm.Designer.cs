@@ -30,13 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.selection = new System.Windows.Forms.ToolStripMenuItem();
-            this.byUser = new System.Windows.Forms.ToolStripMenuItem();
-            this.byDate = new System.Windows.Forms.ToolStripMenuItem();
-            this.byProduct = new System.Windows.Forms.ToolStripMenuItem();
-            this.графикиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.финансыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.поПользователюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.поДатеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ByprodToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GrapgToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.financesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonSeven = new System.Windows.Forms.Button();
             this.buttonEight = new System.Windows.Forms.Button();
             this.buttonNine = new System.Windows.Forms.Button();
@@ -70,7 +68,6 @@
             this.trial = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.PercentButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -78,67 +75,51 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.менюToolStripMenuItem});
+            this.поПользователюToolStripMenuItem,
+            this.поДатеToolStripMenuItem,
+            this.ByprodToolStripMenuItem,
+            this.GrapgToolStripMenuItem1,
+            this.financesToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1038, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // менюToolStripMenuItem
+            // поПользователюToolStripMenuItem
             // 
-            this.менюToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.selection,
-            this.графикиToolStripMenuItem,
-            this.финансыToolStripMenuItem});
-            this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
-            this.менюToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.менюToolStripMenuItem.Text = "Меню";
+            this.поПользователюToolStripMenuItem.Name = "поПользователюToolStripMenuItem";
+            this.поПользователюToolStripMenuItem.Size = new System.Drawing.Size(117, 20);
+            this.поПользователюToolStripMenuItem.Text = "По пользователю";
+            this.поПользователюToolStripMenuItem.Click += new System.EventHandler(this.поПользователюToolStripMenuItem_Click_1);
             // 
-            // selection
+            // поДатеToolStripMenuItem
             // 
-            this.selection.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.byUser,
-            this.byDate,
-            this.byProduct});
-            this.selection.Name = "selection";
-            this.selection.Size = new System.Drawing.Size(125, 22);
-            this.selection.Text = "Выборки";
+            this.поДатеToolStripMenuItem.Name = "поДатеToolStripMenuItem";
+            this.поДатеToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.поДатеToolStripMenuItem.Text = "По дате";
+            this.поДатеToolStripMenuItem.Click += new System.EventHandler(this.поДатеToolStripMenuItem_Click);
             // 
-            // byUser
+            // ByprodToolStripMenuItem
             // 
-            this.byUser.Name = "byUser";
-            this.byUser.Size = new System.Drawing.Size(172, 22);
-            this.byUser.Text = "По пользователю";
-            this.byUser.Click += new System.EventHandler(this.поПользователюToolStripMenuItem_Click);
+            this.ByprodToolStripMenuItem.Name = "ByprodToolStripMenuItem";
+            this.ByprodToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
+            this.ByprodToolStripMenuItem.Text = "По продукту";
+            this.ByprodToolStripMenuItem.Click += new System.EventHandler(this.ByprodToolStripMenuItem_Click);
             // 
-            // byDate
+            // GrapgToolStripMenuItem1
             // 
-            this.byDate.Name = "byDate";
-            this.byDate.Size = new System.Drawing.Size(172, 22);
-            this.byDate.Text = "По дате";
-            this.byDate.Click += new System.EventHandler(this.byDate_Click);
+            this.GrapgToolStripMenuItem1.Name = "GrapgToolStripMenuItem1";
+            this.GrapgToolStripMenuItem1.Size = new System.Drawing.Size(67, 20);
+            this.GrapgToolStripMenuItem1.Text = "Графики";
+            this.GrapgToolStripMenuItem1.Click += new System.EventHandler(this.GrapgToolStripMenuItem1_Click);
             // 
-            // byProduct
+            // financesToolStripMenuItem1
             // 
-            this.byProduct.Name = "byProduct";
-            this.byProduct.Size = new System.Drawing.Size(172, 22);
-            this.byProduct.Text = "По продукту";
-            this.byProduct.Click += new System.EventHandler(this.поПродуктуToolStripMenuItem_Click);
-            // 
-            // графикиToolStripMenuItem
-            // 
-            this.графикиToolStripMenuItem.Name = "графикиToolStripMenuItem";
-            this.графикиToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
-            this.графикиToolStripMenuItem.Text = "Графики";
-            this.графикиToolStripMenuItem.Click += new System.EventHandler(this.графикиToolStripMenuItem_Click);
-            // 
-            // финансыToolStripMenuItem
-            // 
-            this.финансыToolStripMenuItem.Name = "финансыToolStripMenuItem";
-            this.финансыToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
-            this.финансыToolStripMenuItem.Text = "Финансы";
-            this.финансыToolStripMenuItem.Click += new System.EventHandler(this.финансыToolStripMenuItem_Click);
+            this.financesToolStripMenuItem1.Name = "financesToolStripMenuItem1";
+            this.financesToolStripMenuItem1.Size = new System.Drawing.Size(70, 20);
+            this.financesToolStripMenuItem1.Text = "Финансы";
+            this.financesToolStripMenuItem1.Click += new System.EventHandler(this.financesToolStripMenuItem1_Click);
             // 
             // buttonSeven
             // 
@@ -371,25 +352,23 @@
             // nameOfUser
             // 
             this.nameOfUser.FormattingEnabled = true;
-            this.nameOfUser.Location = new System.Drawing.Point(206, 81);
+            this.nameOfUser.Location = new System.Drawing.Point(410, 82);
             this.nameOfUser.Name = "nameOfUser";
             this.nameOfUser.Size = new System.Drawing.Size(120, 21);
             this.nameOfUser.TabIndex = 26;
             this.nameOfUser.Click += new System.EventHandler(this.nameOfUser_Click);
             this.nameOfUser.KeyDown += new System.Windows.Forms.KeyEventHandler(this.nameOfUser_KeyDown);
-            this.nameOfUser.MouseClick += new System.Windows.Forms.MouseEventHandler(this.nameOfUser_MouseClick);
             // 
             // nameOfProduct
             // 
             this.nameOfProduct.FormattingEnabled = true;
-            this.nameOfProduct.Location = new System.Drawing.Point(332, 81);
+            this.nameOfProduct.Location = new System.Drawing.Point(206, 82);
             this.nameOfProduct.Name = "nameOfProduct";
             this.nameOfProduct.Size = new System.Drawing.Size(198, 21);
             this.nameOfProduct.TabIndex = 27;
             this.nameOfProduct.SelectedIndexChanged += new System.EventHandler(this.nameOfProduct_SelectedIndexChanged);
             this.nameOfProduct.Click += new System.EventHandler(this.nameOfProduct_Click);
             this.nameOfProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.nameOfProduct_KeyDown);
-            this.nameOfProduct.MouseClick += new System.Windows.Forms.MouseEventHandler(this.nameOfProduct_MouseClick);
             // 
             // price
             // 
@@ -419,7 +398,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(223, 65);
+            this.label2.Location = new System.Drawing.Point(431, 65);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 13);
             this.label2.TabIndex = 31;
@@ -428,7 +407,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(408, 65);
+            this.label3.Location = new System.Drawing.Point(269, 65);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 13);
             this.label3.TabIndex = 32;
@@ -458,7 +437,6 @@
             this.trial.Name = "trial";
             this.trial.Size = new System.Drawing.Size(580, 20);
             this.trial.TabIndex = 35;
-            this.trial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.trial_KeyDown);
             // 
             // button2
             // 
@@ -482,16 +460,6 @@
             this.button3.Click += new System.EventHandler(this.button3_Click);
             this.button3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.button3_KeyDown);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(833, 78);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 38;
-            this.button1.Text = "Проверить";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_3);
-            // 
             // PercentButton
             // 
             this.PercentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -509,7 +477,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1038, 463);
             this.Controls.Add(this.PercentButton);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.trial);
@@ -558,11 +525,6 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem менюToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem selection;
-        private System.Windows.Forms.ToolStripMenuItem byUser;
-        private System.Windows.Forms.ToolStripMenuItem byDate;
-        private System.Windows.Forms.ToolStripMenuItem byProduct;
         private System.Windows.Forms.Button buttonSeven;
         private System.Windows.Forms.Button buttonEight;
         private System.Windows.Forms.Button buttonNine;
@@ -596,10 +558,12 @@
         private System.Windows.Forms.TextBox trial;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ToolStripMenuItem графикиToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem финансыToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button PercentButton;
+        private System.Windows.Forms.ToolStripMenuItem поПользователюToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem поДатеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ByprodToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem GrapgToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem financesToolStripMenuItem1;
     }
 }
 

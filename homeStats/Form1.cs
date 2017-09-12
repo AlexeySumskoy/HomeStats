@@ -32,6 +32,11 @@ namespace homeStats
             byName.DataSource=t;
             label1.Text = "На вид продукции " + nameOfUser.SelectedItem.ToString() + " за данный период потрачено " + Convert.ToString(dal.cost(t)) + " Гривен";            
         }
-       
+
+        private void nameOfUser_Click(object sender, EventArgs e)
+        {
+            ComboBox c = (ComboBox)sender;
+            c.DroppedDown = true;
+        }
     }
 }

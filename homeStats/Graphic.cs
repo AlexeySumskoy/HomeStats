@@ -58,5 +58,17 @@ namespace homeStats
             }
 
         }
+
+        private void nameOfProduct_Click(object sender, EventArgs e)
+        {
+            ComboBox c = (ComboBox)sender;
+            c.DroppedDown = true;
+        }
+
+        private void nameOfUser_Click(object sender, EventArgs e)
+        {
+            ComboBox c = (ComboBox)sender;
+            c.DroppedDown = true;
+        }
     }
 }

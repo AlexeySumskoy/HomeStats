@@ -21,6 +21,7 @@ namespace homeStats
             // Создать объект доступа к данным.
             dal = new Statistic(cnStr);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.byDate.MouseClick += homeStats_MouseClick;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -30,7 +31,30 @@ namespace homeStats
             label5.Text = Convert.ToString(dal.cost(table)) + " Гривен";
             dal.change(byDate);
         }
+        private void homeStats_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                int ind = byDate.SelectedCells[0].RowIndex;
+                string name = (string)this.byDate.CurrentRow.Cells[1].Value;
+                DateTime data = (DateTime)this.byDate.CurrentRow.Cells[0].Value;
+                string product = (string)this.byDate.CurrentRow.Cells[2].Value;
+                Check form = new Check();
+                form.first = this;
+                form.Show();
+                form.open(ind, name, data, product);
+            }
+        }
+        public void delete(int ind, string name, DateTime data, string product)
+        {
+            try
+            {
+                dal.delete(name, data, product);
+                byDate.Rows.RemoveAt(ind);
+            }
+            catch (Exception e) { MessageBox.Show(e.Message); }
+        }
 
-        
+
     }
 }

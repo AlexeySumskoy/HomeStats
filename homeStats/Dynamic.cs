@@ -58,7 +58,7 @@ namespace homeStats
 
             for (int i = cart.Count - 1; i >= 0; i--)
             {
-                if (cart[i].giveproduct.SelectedItem == null || cart[i].giveproductType.SelectedItem == null)
+                if (cart[i].givePrice.Text == "" && cart[i].giveQantity.Text == "" && cart[i].giveproductType.SelectedItem == null && cart[i].giveproduct.SelectedItem == null)
                 {
                     main.Controls.Remove(cart[i].givedate);
                     main.Controls.Remove(cart[i].givePrice);
@@ -69,24 +69,33 @@ namespace homeStats
                 }
                 else
                 {
-                    cart[i].givePrice.Text = cart[i].givePrice.Text.Replace(".", ",");
-                    cart[i].giveQantity.Text = cart[i].giveQantity.Text.Replace(".", ",");
-                    try
+                    if (cart[i].givePrice.Text == "" || cart[i].giveQantity.Text == "" || cart[i].giveproductType.SelectedItem == null || cart[i].giveproduct.SelectedItem == null)
                     {
-                        dal.insert(cart[i].giveproductType.SelectedItem.ToString(), cart[i].givedate.Value, cart[i].giveproduct.SelectedItem.ToString(), Convert.ToDouble(cart[i].givePrice.Text), Convert.ToDouble(cart[i].giveQantity.Text));
-                    }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show(e.Message);
+                        MessageBox.Show("Заполните поля");
                         return;
                     }
-                    main.Controls.Remove(cart[i].givedate);
-                    main.Controls.Remove(cart[i].givePrice);
-                    main.Controls.Remove(cart[i].giveproduct);
-                    main.Controls.Remove(cart[i].giveproductType);
-                    main.Controls.Remove(cart[i].giveQantity);
-                    cart.RemoveAt(i);
+                    else
+                    {
+                        cart[i].givePrice.Text = cart[i].givePrice.Text.Replace(".", ",");
+                        cart[i].giveQantity.Text = cart[i].giveQantity.Text.Replace(".", ",");
+                        try
+                        {
+                            dal.insert(cart[i].giveproductType.SelectedItem.ToString(), cart[i].givedate.Value, cart[i].giveproduct.SelectedItem.ToString(), Convert.ToDouble(cart[i].givePrice.Text), Convert.ToDouble(cart[i].giveQantity.Text));
+                        }
+                        catch (Exception e)
+                        {
+                            MessageBox.Show(e.Message);
+                            return;
+                        }
+                        main.Controls.Remove(cart[i].givedate);
+                        main.Controls.Remove(cart[i].givePrice);
+                        main.Controls.Remove(cart[i].giveproduct);
+                        main.Controls.Remove(cart[i].giveproductType);
+                        main.Controls.Remove(cart[i].giveQantity);
+                        cart.RemoveAt(i);
+                    }      
                 }
+                               
             }
        }
        public void changeType(string s) {

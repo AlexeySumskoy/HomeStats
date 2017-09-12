@@ -67,6 +67,7 @@
             this.nameOfUser.Name = "nameOfUser";
             this.nameOfUser.Size = new System.Drawing.Size(121, 21);
             this.nameOfUser.TabIndex = 2;
+            this.nameOfUser.Click += new System.EventHandler(this.nameOfUser_Click);
             // 
             // nameOfProduct
             // 
@@ -75,6 +76,7 @@
             this.nameOfProduct.Name = "nameOfProduct";
             this.nameOfProduct.Size = new System.Drawing.Size(121, 21);
             this.nameOfProduct.TabIndex = 3;
+            this.nameOfProduct.Click += new System.EventHandler(this.nameOfProduct_Click);
             // 
             // user
             // 

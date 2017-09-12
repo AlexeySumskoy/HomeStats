@@ -65,7 +65,7 @@
             this.byDate.DefaultCellStyle = dataGridViewCellStyle1;
             this.byDate.Location = new System.Drawing.Point(12, 50);
             this.byDate.Name = "byDate";
-            this.byDate.Size = new System.Drawing.Size(580, 307);
+            this.byDate.Size = new System.Drawing.Size(745, 307);
             this.byDate.TabIndex = 1;
             // 
             // dateOne
@@ -122,7 +122,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(604, 432);
+            this.ClientSize = new System.Drawing.Size(769, 468);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
